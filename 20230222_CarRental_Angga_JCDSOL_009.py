@@ -93,16 +93,17 @@ def update_rental_data():
                         key = input("\nEnter the key/column you want to update: ").capitalize()
                         value = input(f"Enter the new value for {key}: ").capitalize()
                         # Ask for confirmation to update
-                        confirm_update = input(f"\nAre you sure you want to update {key} with {value}? [Y/N]: ").upper()
-                        if confirm_update == "Y":
-                            record[key] = value
-                            print("\nRental record updated successfully.")
-                            return
-                        elif confirm_update == "N":
-                            print("\nRental record update cancelled.")
-                            return
-                        else:
-                            print("Invalid input! Please enter [input Y/N]")
+                        while True:
+                            confirm_update = input(f"\nAre you sure you want to update {key} with {value}? [Y/N]: ").upper()
+                            if confirm_update == "Y":
+                                record[key] = value
+                                print("\nRental record updated successfully.")
+                                return
+                            elif confirm_update == "N":
+                                print("\nRental record update cancelled.")
+                                return
+                            else:
+                                print("Invalid input! Please enter [input Y/N]")
                     else:
                         print("Invalid input! Please enter [input Y/N]")
         else:
@@ -115,16 +116,18 @@ def delete_rental_data():
         id = input("\nEnter the ID of the rental record you want to delete: ").upper()
         for i in range(len(car_rental_data)):
             if car_rental_data[i]["ID"].upper() == id:
-                confirm_delete = input(f"\nAre you sure you want to delete data ID: {id}? [Y/N]: ").upper()
-                if confirm_delete == "Y":
-                    car_rental_data.pop(i)
-                    print("\nRental record deleted successfully.")
-                    return
-                elif confirm_delete == "N":
-                    print("\nRental record delete cancelled.")
-                    return
-                else:
-                    print("Invalid input! Please enter [input Y/N]")
+                while True:
+                    confirm_delete = input(f"\nAre you sure you want to delete data ID: {id}? [Y/N]: ").upper()
+                    if confirm_delete == "Y":
+                        car_rental_data.pop(i)
+                        print("\nRental record deleted successfully.")
+                        return
+                    elif confirm_delete == "N":
+                        print("\nRental record delete cancelled.")
+                        return
+                    else:
+                        print("Invalid input! Please enter [Y/N]")
+                
         else:
             print("No car rental record found with the specified ID.") #If the for loop completes without finding a matching record
             return
